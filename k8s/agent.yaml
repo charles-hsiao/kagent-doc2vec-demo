@@ -1,0 +1,35 @@
+# kagent Agent: cloud-native SRE operations assistant
+apiVersion: kagent.dev/v1alpha2
+kind: Agent
+metadata:
+  name: ops-sre-agent
+  namespace: kagent
+spec:
+  description: |
+    Cloud-native SRE agent that queries internal runbooks and incident post-mortems
+    to help on-call engineers quickly diagnose issues and follow remediation steps.
+  type: Declarative
+  declarative:
+    modelConfig: default-model-config
+    stream: true
+    systemMessage: |
+      You are a cloud-native SRE assistant for an internal operations team.
+      Use your tools to answer questions about incident response, troubleshooting procedures,
+      and on-call guidance based on the team's internal runbooks and post-mortems.
+
+      When answering:
+      - Always search the knowledge base before answering
+      - Cite the specific runbook section or post-mortem incident ID when referencing sources
+      - Provide actionable, step-by-step instructions
+
+      Available knowledge bases:
+      - product_name: 'ops-runbooks', version: 'current'  -> SRE troubleshooting runbooks
+      - product_name: 'incident-postmortems', version: 'current'  -> historical incident post-mortems
+    tools:
+      - type: McpServer
+        mcpServer:
+          apiGroup: kagent.dev
+          kind: RemoteMCPServer
+          name: ops-knowledge-base
+          toolNames:
+            - query-documentation

@@ -1,0 +1,26 @@
+sources:
+  # Internal SRE runbooks (local directory)
+  - type: local_directory
+    product_name: 'ops-runbooks'
+    version: 'current'
+    path: './runbooks'
+    include_extensions: ['.md', '.pdf', '.docx']
+    recursive: true
+    max_size: 10485760
+    database_config:
+      type: 'sqlite'
+      params:
+        db_path: './ops-runbooks.db'
+
+  # Incident post-mortems (local directory)
+  - type: local_directory
+    product_name: 'incident-postmortems'
+    version: 'current'
+    path: './post-mortems'
+    include_extensions: ['.md', '.pdf', '.docx']
+    recursive: true
+    max_size: 10485760
+    database_config:
+      type: 'sqlite'
+      params:
+        db_path: './incident-postmortems.db'

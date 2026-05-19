@@ -1,0 +1,13 @@
+# RemoteMCPServer: register the MCP server with kagent
+apiVersion: kagent.dev/v1alpha2
+kind: RemoteMCPServer
+metadata:
+  name: ops-knowledge-base
+  namespace: kagent
+spec:
+  description: 'Internal ops runbooks and incident post-mortem knowledge base'
+  protocol: STREAMABLE_HTTP
+  sseReadTimeout: 5m0s
+  terminateOnClose: true
+  timeout: 5s
+  url: http://mcp-sqlite-vec.kagent:3001/mcp
