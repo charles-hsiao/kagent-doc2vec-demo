@@ -1,6 +1,6 @@
-# kagent doc2vec Demo — Cloud-Native SRE Knowledge Base
+# kagent doc2vec Demo — Cloud-Native Knowledge Base
 
-A demo project showing how to use [doc2vec](https://github.com/kagent-dev/doc2vec) to vectorize internal SRE runbooks and incident post-mortems, then expose them to a [kagent](https://github.com/kagent-dev/kagent) AI agent via an MCP server — so on-call engineers can query operational knowledge in natural language.
+A demo project showing how to use [doc2vec](https://github.com/kagent-dev/doc2vec) to vectorize internal runbooks and incident post-mortems, then expose them to a [kagent](https://github.com/kagent-dev/kagent) AI agent via an MCP server — so engineers can query operational knowledge in natural language.
 
 ## How It Works
 
@@ -182,7 +182,7 @@ kind delete cluster --name kagent-doc2vec-demo
 | `.env` | `OPENAI_API_KEY` and optional embedding provider settings |
 | `k8s/mcp-deployment.yaml` | Kubernetes resources for the MCP server |
 | `k8s/toolserver.yaml` | Registers the MCP server as a kagent tool server |
-| `k8s/agent.yaml` | Defines the SRE agent and its system prompt |
+| `k8s/agent.yaml` | Defines the agent and its system prompt |
 
 ## Security Notes
 
